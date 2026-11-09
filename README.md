@@ -1,23 +1,33 @@
 # V2GSim — instaladores
 
-Este repositório contém **somente os binários publicados** do V2GSim, simulador do fluxo de potência
-entre a rede, o conversor e a bateria de um Renault Twizy (G2V realista e V2G/V2B hipotéticos),
-desenvolvido no contexto do IEEE PES UnB / ENE-UnB. O código-fonte é mantido em repositório privado.
+V2GSim — Simulação G2V/V2G baseada no Renault Twizy. O simulador calcula a transferência de energia
+entre a rede elétrica, o carregador e a bateria de um Renault Twizy, na recarga convencional (G2V) e
+em cenários hipotéticos de descarga (V2B e V2G). É um trabalho acadêmico de extensão do
+Departamento de Engenharia Elétrica da Universidade de Brasília (ENE-UnB). O código-fonte fica num
+repositório privado; este repositório contém apenas os binários publicados.
 
-Cada release traz:
+A mesma interface, com as execuções publicadas no servidor, está em <https://v2g.juanmarcosilva.com/>.
 
-- `V2GSim-Setup-<versão>.exe` — instalador Windows (Inno Setup, por usuário, sem privilégio de administrador);
-- `V2GSim-Setup-<versão>.exe.sha256` — SHA-256 do instalador;
-- `manifest.json` e `manifest.json.sig` — manifesto da versão assinado com Ed25519.
+## Arquivos de cada release
 
-O atualizador do aplicativo confere a assinatura do manifesto com a chave pública embutida no
-programa **antes** de usar qualquer campo, e só executa o instalador se tamanho e SHA-256 conferirem.
+- `V2GSim-Setup-<versão>.exe`: instalador para Windows 10/11 de 64 bits (Inno Setup, por usuário,
+  sem privilégio de administrador). Requer o Microsoft Edge WebView2 Runtime, que já vem no
+  Windows 11;
+- `V2GSim-Setup-<versão>.exe.sha256`: SHA-256 do instalador;
+- `manifest.json` e `manifest.json.sig`: manifesto da versão, assinado com Ed25519, usado pelo
+  atualizador do aplicativo.
 
-Conferência manual do hash (PowerShell):
+O atualizador (Sobre › Atualizações) confere a assinatura do manifesto com a chave pública embutida
+no programa antes de ler qualquer campo, e só executa o instalador se o tamanho e o SHA-256
+conferirem.
+
+Para conferir o hash manualmente (PowerShell):
 
 ```powershell
 (Get-FileHash .\V2GSim-Setup-<versão>.exe -Algorithm SHA256).Hash
 ```
 
-Licença do código: MIT. A marca UnB, o emblema Renault e modelos de terceiros não estão cobertos pela
-licença MIT.
+## Licença
+
+Código sob a licença MIT. A marca UnB, o emblema Renault e os modelos de terceiros não estão
+cobertos pela licença MIT.
